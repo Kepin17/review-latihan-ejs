@@ -1,5 +1,5 @@
-<nav class="w-full h-20 flex justify-between items-center bg-white p-4 sticky top-0 z-10 shadow-md">
-  <h1 class="text-black text-xl font-bold">
+<nav class="w-full h-20 flex justify-between items-center bg-white p-4 sticky top-0 z-10 shadow-md dark:bg-slate-800">
+  <h1 class="text-black text-xl font-bold dark:text-white">
     <a href="/">Olyzano.</a>
   </h1>
 
@@ -10,25 +10,47 @@
       </label>
       <input type="text" name="search" placeholder="Search" class="focus:outline-none focus:border-none w-full" />
     </form>
-    <li class="text-black">
-      <a href="/">Home</a>
+    <li class="text-black dark:text-white">
+      <a href="/" class="<% if (page == 'Home') { %> text-blue-500 font-bold <% } else { %> text-black dark:text-white <% } %>">Home</a>
     </li>
 
-    <li class="text-black">
-      <a href="">About</a>
+    <li class="relative dropdown-mother cursor-pointer">
+      <p class="cursor-pointe text-black dark:text-white">About</p>
+      <ul class="dropdown absolute top-6 w-[200px] h-auto bg-white border-2 border-black rounded-md overflow-hidden">
+        <li class="border-1 w-full h-10 flex items-center pl-2 bg-white hover:bg-slate-900 hover:text-white">
+          <a href="">
+            <i class="fa-solid fa-heart"></i>
+            About me
+          </a>
+        </li>
+      
+        <li class="border-1 w-full h-10 flex items-center pl-2 bg-white hover:bg-slate-900 hover:text-white">
+          <a href="">
+            <i class="fa-solid fa-briefcase"></i>
+            Project
+          </a>
+        </li>
+
+        <li class="border-1 w-full h-10 flex items-center pl-2 hover:bg-slate-900 hover:text-white">
+          <a href="">
+            <i class="fa-solid fa-people-group"></i>
+            Team
+          </a>
+        </li>
+      </ul>
     </li>
 
-    <li class="text-black">
+    <li class="text-black dark:text-white">
       <a href="">Blog</a>
     </li>
 
     <a href="/register">
-      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4 rounded-md">
+      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md">
         <i class="fa-solid fa-right-to-bracket"></i>
         Sign Up
       </button>
     </a>
-    <button onclick="toggleTheme()">
+    <button onclick="toggleTheme()" class="w-10 h-10">
       <i class="fa-solid fa-sun text-orange-500 text-2xl" id="light"></i>
       <i class="fa-solid fa-moon text-slate-100 text-2xl hidden" id="dark"></i>
     </button>
@@ -36,15 +58,26 @@
 </nav>
 
 <script>
+  const theme = localStorage.getItem("theme");
+  if (theme == "light") {
+    document.getElementById("light").classList.remove("hidden");
+    document.getElementById("dark").classList.add("hidden");
+  } else if (theme == "dark") {
+    document.getElementById("light").classList.add("hidden");
+    document.getElementById("dark").classList.remove("hidden");
+  }
   const toggleTheme = () => {
     const light = document.getElementById("light");
     const dark = document.getElementById("dark");
     if (light.classList.contains("hidden")) {
       light.classList.remove("hidden");
       dark.classList.add("hidden");
+      localStorage.setItem("theme", "light");
     } else {
       light.classList.add("hidden");
       dark.classList.remove("hidden");
+      localStorage.setItem("theme", "dark");
     }
+    window.location.reload();
   };
 </script>

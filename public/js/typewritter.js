@@ -2,7 +2,7 @@ const texts = [
   "Let me introduce myself.", 
   "My name is Kevien.", 
   "I'm Student.",
-  "I'm a web developer.",
+  "I'm web developer.",
   "I'm always looking for new challenges.",
 
 ];

@@ -31,3 +31,11 @@ body {
   content: "";
   animation: blink-caret 0.75s step-end infinite;
 }
+
+.dropdown {
+  display: none;
+}
+
+.dropdown-mother:hover .dropdown {
+  display: block;
+}
